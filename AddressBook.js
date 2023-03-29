@@ -43,6 +43,10 @@ class AddressBook {
     }
     return null;
   }
+
+  getNumberOfContacts() {
+    return this.contacts.reduce((count, contact) => count + 1, 0);
+  }
 }
 
 
@@ -53,9 +57,5 @@ const book = new AddressBook();
 book.addContact(john);
 book.addContact(jane);
 
-const foundContact = book.findContact('Prince', 'Praveen');
-if (foundContact) {
-  console.log("Contact Found!");
-} else {
-  console.log('Contact not found');
-}
+const numberOfContacts = book.getNumberOfContacts();
+console.log(numberOfContacts);
