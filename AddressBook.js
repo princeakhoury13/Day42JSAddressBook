@@ -1,5 +1,12 @@
 class Contact {
   constructor(firstName, lastName, city, phoneNumber) {
+    const nameRegex = /^[A-Z][a-z]{2,}$/; // Regex for first name and last name
+    if (!nameRegex.test(firstName)) {
+      throw new Error('First name should start with a capital letter and should have at least 3 characters');
+    }
+    if (!nameRegex.test(lastName)) {
+      throw new Error('Last name should start with a capital letter and should have at least 3 characters');
+    }
     this.firstName = firstName;
     this.lastName = lastName;
     this.city = city;
