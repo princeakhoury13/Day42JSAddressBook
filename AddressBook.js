@@ -48,8 +48,16 @@ class AddressBook {
     return this.contacts.reduce((count, contact) => count + 1, 0);
   }
 
-  filterContactsByCity(city) {
-    return this.contacts.filter(contact => contact.city === city);
+  getNumberOfContactsByCity() {
+    const contactsByCity = {};
+    this.contacts.forEach(contact => {
+      if (contactsByCity[contact.city]) {
+        contactsByCity[contact.city]++;
+      } else {
+        contactsByCity[contact.city] = 1;
+      }
+    });
+    return contactsByCity;
   }
 }
 
@@ -65,5 +73,7 @@ book.addContact(jane);
 book.addContact(person3);
 book.addContact(person4);
 
-const losAngelesContacts = book.filterContactsByCity('New york');
-console.log(losAngelesContacts);
+const contactsByCity = book.getNumberOfContactsByCity();
+for (const city in contactsByCity) {
+  console.log(`${city}: ${contactsByCity[city]}`);
+}
